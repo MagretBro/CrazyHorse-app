@@ -1,0 +1,10 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let route of routes" (opened)="toggleDescription(route)" (closed)="toggleDescription(route)">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{route.id}}. {{route.name}} - {{route.category}}, {{route.height}}, {{route.count}} оттяжек
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p *ngIf="route.boltsDescription">Количество точек: {{ route.boltsDescription }}</p>
+  </mat-expansion-panel>
+</mat-accordion>

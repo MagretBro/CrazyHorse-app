@@ -1,0 +1,26 @@
+
+
+.routePic img {
+  transition: transform 0.3s ease, width 0.3s ease;
+  cursor: pointer;
+  width: 300px;
+  max-width: 100%;
+  height: auto;
+}
+
+.routePic img.zoomed {
+  width: 100%;
+  transform: scale(1);
+  cursor: zoom-out;
+}
+
+@media (max-width: 768px) {
+  .routePic img {
+    width: 100vw;
+    height: auto;
+    transform: none;
+    cursor: default;
+  }
+}
+
+

@@ -1,0 +1,38 @@
+<app-header></app-header>
+<div class="wr-sector">
+<!--  <div class="wr-header">-->
+<!--    <p>Сектор Rooftop</p>-->
+<!--  </div>-->
+
+  <div class="wr-routePic">
+    <div class="routePic">
+      <img src="assets/rockroutes/2-the-rooftop-trace.png"
+           alt="трасса rooftop" width="300"
+           [class.zoomed]="isZoomed"
+           (click)="toggleZoom()">
+    </div>
+    <div class="sliderRoute">линия слайдера для массива трасс на секторе (если их больше 1)</div>
+  </div>
+  <div class="wr-listDescribe">
+
+    <app-routedescribe>
+
+      <p>Описание хар-ки - раскрытие по клику</p>
+      <p>Описание маршрута</p>
+    </app-routedescribe>
+<!--    <section>-->
+<!--      <h4>Button Toggle inside of a Reactive form</h4>-->
+<!--      <mat-button-toggle-group [formControl]="fontStyleControl" aria-label="Font Style">-->
+<!--        <mat-button-toggle value="bold">Bold</mat-button-toggle>-->
+<!--        <mat-button-toggle value="italic">Italic</mat-button-toggle>-->
+<!--        <mat-button-toggle value="underline">Underline</mat-button-toggle>-->
+<!--      </mat-button-toggle-group>-->
+<!--      <p>Chosen value is {{fontStyleControl.value}}</p>-->
+<!--    </section>-->
+
+
+  </div>
+
+  <div class="wr-sectorDescribe">Описание сектора</div>
+</div>
+
