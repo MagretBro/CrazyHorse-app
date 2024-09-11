@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RocksectorService } from './rocksector.service';
+import { ClimbingRouteService } from './climbing-route.service';
 
-describe('RocksectorService', () => {
-  let service: RocksectorService;
+describe('ClimbingRouteService', () => {
+  let service: ClimbingRouteService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(RocksectorService);
+    service = TestBed.inject(ClimbingRouteService);
   });
 
   it('should be created', () => {
