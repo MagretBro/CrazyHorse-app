@@ -1,38 +1,69 @@
-<mat-toolbar>
-  <button mat-icon-button [matMenuTriggerFor]="rockMenu" class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <mat-menu #rockMenu="matMenu">
-    <button mat-menu-item [matMenuTriggerFor]="sectorsMenu">Сектора</button>
-    <button mat-menu-item [matMenuTriggerFor]="climbGymMenu">Скалодромы</button>
-  </mat-menu>
+<!-- Главное меню стран -->
+<button mat-button [matMenuTriggerFor]="countryMenu">Countries</button>
 
-  <mat-menu #sectorsMenu="matMenu">
-    <button mat-menu-item>Fishes</button>
-    <button mat-menu-item>Amphibians</button>
-    <button mat-menu-item>Reptiles</button>
-    <button mat-menu-item>Birds</button>
-    <button mat-menu-item>Mammals</button>
-  </mat-menu>
+<mat-menu #countryMenu="matMenu">
+  <ng-container *ngFor="let country of tcountries">
+    <!-- Кнопка для каждой страны с подменю для регионов -->
+    <button mat-menu-item [matMenuTriggerFor]="regionsMenu">
+      {{ country.name }}
+    </button>
 
-
-  <mat-menu #climbGymMenu="matMenu">
-    <button mat-menu-item>Insects</button>
-    <button mat-menu-item>Molluscs</button>
-    <button mat-menu-item>Crustaceans</button>
-    <button mat-menu-item>Corals</button>
-    <button mat-menu-item>Arachnids</button>
-    <button mat-menu-item>Velvet worms</button>
-    <button mat-menu-item>Horseshoe crabs</button>
-  </mat-menu>
+    <!-- Подменю для регионов каждой страны -->
+    <mat-menu #regionsMenu="matMenu">
+      <ng-container *ngFor="let region of country.regions">
+        <button mat-menu-item>{{ region.name }}</button>
+      </ng-container>
+    </mat-menu>
+  </ng-container>
+</mat-menu>
 
 
-  <span> Rooftop - Название сектора</span>
-  <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button>
-</mat-toolbar>
+<!--<mat-toolbar>-->
+<!--  <button mat-button [matMenuTriggerFor]="countries">XXX</button>-->
+<!--    <mat-menu #countries="matMenu" >-->
+<!--      <ng-container *ngFor="let country of tcountries">-->
+<!--        <button mat-menu-item >{{country.name}}</button >-->
+<!--      </ng-container>-->
+<!--      <button mat-menu-item >PPP</button >-->
+<!--    </mat-menu>-->
+
+<!--</mat-toolbar>-->
+
+<!--<mat-toolbar>-->
+<!--  <button mat-icon-button [matMenuTriggerFor]="rockMenu" class="example-icon" aria-label="Example icon-button with menu icon">-->
+<!--    <mat-icon>menu</mat-icon>-->
+<!--  </button>-->
+<!--  <mat-menu #rockMenu="matMenu">-->
+<!--    <button mat-menu-item [matMenuTriggerFor]="sectorsMenu">Сектора</button>-->
+<!--    <button mat-menu-item [matMenuTriggerFor]="climbGymMenu">Скалодромы</button>-->
+<!--  </mat-menu>-->
+
+<!--  <mat-menu #sectorsMenu="matMenu">-->
+<!--    <button mat-menu-item>Fishes</button>-->
+<!--    <button mat-menu-item>Amphibians</button>-->
+<!--    <button mat-menu-item>Reptiles</button>-->
+<!--    <button mat-menu-item>Birds</button>-->
+<!--    <button mat-menu-item>Mammals</button>-->
+<!--  </mat-menu>-->
+
+
+<!--  <mat-menu #climbGymMenu="matMenu">-->
+<!--    <button mat-menu-item>Insects</button>-->
+<!--    <button mat-menu-item>Molluscs</button>-->
+<!--    <button mat-menu-item>Crustaceans</button>-->
+<!--    <button mat-menu-item>Corals</button>-->
+<!--    <button mat-menu-item>Arachnids</button>-->
+<!--    <button mat-menu-item>Velvet worms</button>-->
+<!--    <button mat-menu-item>Horseshoe crabs</button>-->
+<!--  </mat-menu>-->
+
+
+<!--  <span> Rooftop - Название сектора</span>-->
+<!--  <span class="example-spacer"></span>-->
+<!--  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">-->
+<!--    <mat-icon>favorite</mat-icon>-->
+<!--  </button>-->
+<!--  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">-->
+<!--    <mat-icon>share</mat-icon>-->
+<!--  </button>-->
+<!--</mat-toolbar>-->

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Massive } from "../model/model";
+import {Massive, Region} from "../model/model";
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +21,13 @@ export class MassiveService {
     return this.http.post<Massive>(this.apiUrl, region);
   }
 
+  updateMassive(id: number, massive: Massive): Observable<Massive> {
+    return this.http.put<Massive>(`${this.apiUrl}/${id}`, massive);
+  }
+
+  // Удалить страну
+  deleteMassive(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 
 }

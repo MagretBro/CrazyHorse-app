@@ -1,0 +1,18 @@
+<!-- Главное меню стран -->
+<button mat-button [matMenuTriggerFor]="countryMenu">Countries</button>
+
+<mat-menu #countryMenu="matMenu">
+  <ng-container *ngFor="let country of tcountries">
+    <!-- Кнопка для каждой страны с подменю для регионов -->
+    <button mat-menu-item [matMenuTriggerFor]="regionsMenu">
+      {{ country.name }}
+    </button>
+
+    <!-- Подменю для регионов каждой страны -->
+    <mat-menu #regionsMenu="matMenu">
+    <ng-container *ngFor="let region of country.regions">
+        <button mat-menu-item>{{ region.name }}</button>
+      </ng-container>
+    </mat-menu>
+  </ng-container>
+</mat-menu>

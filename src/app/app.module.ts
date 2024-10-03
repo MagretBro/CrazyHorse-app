@@ -11,11 +11,12 @@ import { MainComponent } from './components/main/main.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SectorComponent } from './components/sector/sector.component';
 import { RockrouteComponent } from './components/rockroute/rockroute.component';
-import {MatMenuModule} from "@angular/material/menu";
+import {MatMenu, MatMenuModule, MatMenuTrigger} from "@angular/material/menu";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { RoutedescribeComponent } from './components/routedescribe/routedescribe.component';
 import {MatExpansionModule} from "@angular/material/expansion";
-
+import { HttpClientModule } from '@angular/common/http';
+import {CountrylistComponent} from "./components/countrylist/countrylist.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import {MatExpansionModule} from "@angular/material/expansion";
     HeaderComponent,
     SectorComponent,
     RockrouteComponent,
-    RoutedescribeComponent
+    RoutedescribeComponent,
+    CountrylistComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,11 @@ import {MatExpansionModule} from "@angular/material/expansion";
     FormsModule,
     ReactiveFormsModule,
     MatButtonToggleModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatMenuModule,
+    MatMenuTrigger,
+    MatMenu,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

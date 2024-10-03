@@ -8,13 +8,29 @@ import { Country } from "../model/model";
 })
 export class CountryService {
 
-  private apiUrl = 'http://localhost:5000/api/countries';  // URL к вашему API
+  // private apiUrl = 'http://localhost:5137/api/country';  // URL к вашему API
+  private apiUrl = 'http://localhost:5025/api/Countries';  // URL к вашему API
 
   constructor(private http: HttpClient) {}
 
-  // Получить список стран
   getCountries(): Observable<Country[]> {
-    return this.http.get<Country[]>(this.apiUrl);
+    return this.http.get<Country[]>(this.apiUrl);  // Возвращает список стран с регионами
+  }
+
+  // Пока в блоке. тестирую код строк 16-18
+  // Получить список стран
+  // async getCountries() {
+  //  let res = this.http.get<Country[]>('http://localhost:5025/api/Countries');
+  //  console.log("res");
+  //   console.log(res);
+  //   return res;
+  // }
+
+  // выше пока в блоке
+  getCountriesRegionsMenuList(): Observable<Country[]> {
+    let res =  this.http.get<Country[]>('http://localhost:5137/api/GetRegionsMenuList');
+    console.log(res);
+    return res;
   }
 
   // Получить одну страну по ID
