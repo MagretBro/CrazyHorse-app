@@ -26,19 +26,20 @@
 // }
 
 export interface Region {
-  id: number;
+  id: string;
   name: string;
   countryId: number;
+  massives: Massive[];
 }
 
 export interface Country {
-  id: number;
+  id: string;
   name: string;
   regions: Region[];
 }
 
 export class Massive {
-  id: number = 1000;
+  id: string | undefined;
   name: string="";
   geo: string="";
   map?: string="";
@@ -52,7 +53,7 @@ export class Massive {
 
 // Массив секторов на скале/массиве
 export class Sector {
-  id: number = 10000;
+  id: string | undefined;
   name: string="";
   information: string="";
   geo: string=""; // тут строка линка гугл мапс
@@ -67,7 +68,7 @@ export class Sector {
 }
 
 export class ClimbingRoute {
-  id: number = 100000;
+  id: string | undefined;
   name: string = "";
   geo?: string = ""; // строка линка гугл мапс
   map?: string = ""; // виджет карты, если нужно

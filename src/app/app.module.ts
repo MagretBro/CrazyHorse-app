@@ -16,7 +16,8 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { RoutedescribeComponent } from './components/routedescribe/routedescribe.component';
 import {MatExpansionModule} from "@angular/material/expansion";
 import { HttpClientModule } from '@angular/common/http';
-import {CountrylistComponent} from "./components/countrylist/countrylist.component";
+import { MassiveComponent} from "./components/massive/massive.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import {CountrylistComponent} from "./components/countrylist/countrylist.compone
     SectorComponent,
     RockrouteComponent,
     RoutedescribeComponent,
-    CountrylistComponent
+    MassiveComponent,
+
   ],
   imports: [
     BrowserModule,

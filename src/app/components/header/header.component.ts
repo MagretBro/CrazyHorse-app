@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {CountryService} from "../../service/country.service";
 import {Country} from "../../model/model";
-import {Region} from "../../model/model";
+import {MassiveService} from "../../service/massive.service";
+import { Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -9,16 +10,21 @@ import {Region} from "../../model/model";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit{
-  tcountries: Country[] = [];  // Массив для хранения стран
+  menuItems: Country[] = [];
 
-  constructor(private countryService: CountryService) {
-  }
+
+  constructor(
+    private countryService: CountryService,
+    private router: Router,
+    private massiveService: MassiveService) {}
 
   ngOnInit(): void {
     // При инициализации компонента загружаем страны с помощью сервиса
     this.countryService.getCountries().subscribe(
       (countries) => {
-        this.tcountries = countries;
+        this.menuItems = countries;
+        console.log(this.menuItems);
+        //this.extractUniqueRegions();
       },
       (error) => {
         console.error('Error fetching countries', error);
@@ -26,18 +32,8 @@ export class HeaderComponent implements OnInit{
     );
   }
 
-
-//  Генин оригинал
-  // async ngOnInit() {
-  //   await this.countryService.getCountries().then(res2=>{
-  //     console.log("res2");
-  //     console.log(res2);
-  //     res2.subscribe(n=>{console.log(n)}, er=>{console.log(er)}, ()=>{
-  //       console.log(this);
-  //     });
-  //   })
-  //
-  // }
-
-
+  goToMassive(massiveId: string): void {
+    this.router.navigate(['/massive', massiveId]);
+  }
 }
+
