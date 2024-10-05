@@ -1,3 +1,32 @@
 <p>massive works!</p>
 <div>тут будут id {{massiveData?.name}}</div>
 
+<p>Massive Data:</p>
+
+<div *ngIf="massiveData">
+  <h2>{{ massiveData.name }}</h2>
+  <p>{{ massiveData.describe }}</p>
+
+  <!-- Отображение картинки -->
+  <img *ngIf="massiveData.images" [src]="massiveData.images" alt="Massive Image">
+
+  <!-- Координаты на карте -->
+  <div *ngIf="massiveData.map">
+    <p>Map Point: {{ massiveData.map }}</p>
+  </div>
+
+<!--  &lt;!&ndash; Отображение списка секторов &ndash;&gt;-->
+<!--  <div *ngIf="massiveData.SectorsId?.length">-->
+<!--    <h3>Sectors:</h3>-->
+<!--    <ul>-->
+<!--      <li *ngFor="let sector of massiveData.sectors">-->
+<!--        <strong>{{ sector.name }}</strong> (ID: {{ sector.id }})-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!-- Показать сообщение, если данных нет -->
+<div *ngIf="!massiveData">
+  <p>No massive data available.</p>
+</div>

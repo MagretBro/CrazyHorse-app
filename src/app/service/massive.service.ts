@@ -15,4 +15,9 @@ export class MassiveService {
   getMassivesByRegion(regionId: string): Observable<Massive[]> {
     return this.http.get<Massive[]>(`${this.apiUrl}/region/${regionId}`);
   }
+
+  GetMassiveById(massiveId: string): Observable<Massive> {
+    return this.http.get<Massive>(`${this.apiUrl}/massive/${massiveId}`);
+  }
+
 }
