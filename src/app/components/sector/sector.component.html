@@ -1,1 +1,23 @@
-<p>sector works!</p>
+
+<div>Имя сектора {{sectorData?.name}}</div>
+
+<div class="wr-routePic" *ngFor="let pic of sectorData?.pictures">
+<!--  <span>{{pic.name}}</span>-->
+  <div class="routePic">
+    <img [src]="'./assets/hw/'+ pic.name + '.jpeg'"
+         alt="Image of {{sectorData?.name}}"
+        [class.zoomed]="selectedPictureId === pic.id"
+        (click)="toggleZoom(pic.id)">
+  </div>
+</div>
+
+<h3>Трассы:</h3>
+
+<ul>
+  <li *ngFor="let route of sectorData?.climbingRoutes">
+    <strong>{{ route.name }}</strong> ({{ route.category }}, {{route.testimonial}} {{route.boltCount}})
+  </li>
+</ul>
+
+
+

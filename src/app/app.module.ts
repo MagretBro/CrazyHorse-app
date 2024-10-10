@@ -17,6 +17,7 @@ import { RoutedescribeComponent } from './components/routedescribe/routedescribe
 import {MatExpansionModule} from "@angular/material/expansion";
 import { HttpClientModule } from '@angular/common/http';
 import { MassiveComponent} from "./components/massive/massive.component";
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -29,23 +30,24 @@ import { MassiveComponent} from "./components/massive/massive.component";
     MassiveComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatMenuModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatButtonToggleModule,
-    MatExpansionModule,
-    MatMenuModule,
-    MatMenuTrigger,
-    MatMenu,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatMenuModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatButtonToggleModule,
+        MatExpansionModule,
+        MatMenuModule,
+        MatMenuTrigger,
+        MatMenu,
+        HttpClientModule,
+        NgOptimizedImage
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

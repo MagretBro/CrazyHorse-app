@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MassiveService} from "../../service/massive.service";
 import {Massive} from "../../model/model";
 
@@ -14,6 +14,7 @@ export class MassiveComponent implements OnInit {
   massiveData: Massive | null = null;
   constructor(
     private massiveService: MassiveService,
+    private router: Router,
     private route: ActivatedRoute) {
   }
 
@@ -34,6 +35,13 @@ export class MassiveComponent implements OnInit {
         console.error('Error fetching massive data:', error);
       }
     );
+  }
+
+  async onSectorPage(sectorId: string | undefined) {
+    if(sectorId === undefined) {
+      return;
+    }
+    await this.router.navigate(['/sector', sectorId]);
   }
 
 }

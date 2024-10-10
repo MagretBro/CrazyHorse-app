@@ -43,11 +43,11 @@ export class Massive {
   name: string="";
   geo: string="";
   map?: string="";
-  images?: string[] = [];
+  picture?: string[] = [];
   describe?: string = "";       // Описание, не обязательное поле
   regionId?: number = 0;
   region?: any;
-  SectorsId: Sector[]=[];
+  sectors: Sector[]=[];
 }
 
 
@@ -58,9 +58,9 @@ export class Sector {
   information: string="";
   geo: string=""; // тут строка линка гугл мапс
   map?: string=""; // тут сам виджет карты если нужно
-  images?: string[] = [];
+  pictures?: Picture[] = [];
   massiveId: Massive[] = [];
-  climbingRoute: ClimbingRoute[] = [];
+  climbingRoutes: ClimbingRoute[] = [];
 
   // countryId: Country[] = [];
   // SectorsId: Sector[]=[];
@@ -70,29 +70,33 @@ export class Sector {
 export class ClimbingRoute {
   id: string | undefined;
   name: string = "";
-  geo?: string = ""; // строка линка гугл мапс
-  map?: string = ""; // виджет карты, если нужно
-  images?: string[] = [];
-  information?: string = "";
+  describe?: string = "";
+
+  mapPoint?: string = ""; // строка линка гугл мапс
+  mapVidget?: string = ""; // виджет карты
+  picture?: string[] = [];
+  sectorsId: Sector[] = [];
+  category: string = ""; // Категория сложности
+  testimonial: string = ""; // Тип, высота, число шлямбуров
+  boltCount: number = 0; // Количество болтов, threads
   // countryId: Country[] = [];
   // RegionId: Region[] = [];
-  SectorsId: Sector[] = [];
-
   // massive: string = ""; // Название массива или скалы
   // sector: string = ""; // Название сектора
   // numOfSector: number = 0; // Номер сектора
-  category: string = ""; // Категория сложности
-  testimonial: string = ""; // Высота маршрута
-  boltCount: number = 0; // Количество болтов, threads
 }
-
 
 export class MountainNameResultModel {
   id: number = 119;
   name?: string="";
-  images?: string[] = [];
+  picture?: string[] = [];
 }
 
+export class Picture {
+  id: string = "";
+  parentId: string= "";
+  name: string = "";
+}
 
 
 // export class ClimberGym {

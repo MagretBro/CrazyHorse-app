@@ -8,7 +8,7 @@ import {ClimbingRoute} from "../model/model";
 })
 export class ClimbingRouteService {
 
-  private apiUrl = 'http://localhost:5000/api/climbingroute';
+  private apiUrl = 'http://localhost:5025/api/climbingroute';
   constructor(private http: HttpClient) { }
   getClimbingRoutes(): Observable<ClimbingRoute[]> {
     return this.http.get<ClimbingRoute[]>(this.apiUrl);
