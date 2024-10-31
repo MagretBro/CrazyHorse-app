@@ -11,7 +11,7 @@ export class ClimbingRouteService {
   private apiUrl = 'http://localhost:5025/api/climbingroute';
   constructor(private http: HttpClient) { }
   getClimbingRoutes(): Observable<ClimbingRoute[]> {
-    return this.http.get<ClimbingRoute[]>(this.apiUrl);
+    return this.http.get<ClimbingRoute[]>('http://localhost:5025/api/GetClimbingRoutes');
   }
   getClimbingRoute(id: number): Observable<ClimbingRoute> {
     return this.http.get<ClimbingRoute>(`${this.apiUrl}/${id}`);

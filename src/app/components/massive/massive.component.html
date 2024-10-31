@@ -1,10 +1,17 @@
-<p>massive works!</p>
-<div>Массив: {{massiveData?.name}}</div>
+<!--<p>massive works!</p>-->
+<!--<div>Массив: {{massiveData?.name}}</div>-->
 
-<p>Massive Data:</p>
+<!--<p>Massive Data:</p>-->
+<app-header></app-header>
+
 
 <div *ngIf="massiveData">
   <h2>{{ massiveData.name }}</h2>
+
+  <div class="Complexity">Категории: 5a- 5b 5c 6a 6b 6c 7a 7b 7c+</div>
+  <p>Число этих трасс на массиве 5  6  7</p>
+
+
   <p>{{ massiveData.describe }}</p>
 <!--  <p>{{massiveData.sectors}}</p>-->
 

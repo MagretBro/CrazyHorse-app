@@ -18,6 +18,8 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import { HttpClientModule } from '@angular/common/http';
 import { MassiveComponent} from "./components/massive/massive.component";
 import {NgOptimizedImage} from "@angular/common";
+import {MatListModule} from '@angular/material/list';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -45,8 +47,10 @@ import {NgOptimizedImage} from "@angular/common";
         MatMenuModule,
         MatMenuTrigger,
         MatMenu,
+        MatListModule,
         HttpClientModule,
-        NgOptimizedImage
+        NgOptimizedImage,
+        MatProgressSpinnerModule
     ],
   providers: [],
   bootstrap: [AppComponent]

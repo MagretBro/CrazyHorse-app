@@ -20,4 +20,8 @@ export class MassiveService {
     return this.http.get<Massive>(`${this.apiUrl}/massive/${massiveId}`);
   }
 
+  getMassives(): Observable<Massive[]> {
+    return this.http.get<Massive[]>('your-api-endpoint');
+  }
+
 }

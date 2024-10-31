@@ -13,6 +13,9 @@ export class SectorService {
   constructor(private http: HttpClient) {
   }
 
+  GetAllSectors(): Observable<Sector[]> {
+    return this.http.get<Sector[]>(`${this.apiUrl}`);
+  }
   GetSectorById(sectorId: string): Observable<Sector> {
     let res = this.http.get<Sector>(`${this.apiUrl}/sector/${sectorId}`);
 

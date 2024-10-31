@@ -1,23 +1,42 @@
+<app-header></app-header>
 
-<div>Имя сектора {{sectorData?.name}}</div>
 
-<div class="wr-routePic" *ngFor="let pic of sectorData?.pictures">
-<!--  <span>{{pic.name}}</span>-->
-  <div class="routePic">
-    <img [src]="'./assets/hw/'+ pic.name + '.jpeg'"
-         alt="Image of {{sectorData?.name}}"
-        [class.zoomed]="selectedPictureId === pic.id"
-        (click)="toggleZoom(pic.id)">
+<div class="wr-main">
+    <div class="h2">{{sectorData?.name}}</div>
+    <div class="Complexity">Категории: 5a- 5b 5c 6a 6b 6c 7a 7b 7c+</div>
+    <p>Число этих трасс на {{sectorData?.name}}: 5  6  7</p>
+
+
+
+    <div class="wr-routePic" *ngFor="let pic of sectorData?.pictures">
+      <div class="routePic">
+        <img [src]="'./assets/hw/'+ pic.name + '.jpeg'"
+             alt="Image of {{sectorData?.name}}"
+             [class.zoomed]="selectedPictureId === pic.id"
+             (click)="toggleZoom(pic.id)">
+      </div>
+    </div>
+  <div class="wr-describe">
+    {{ sectorData?.describe }}
   </div>
+  <div class="wr-map">{{ sectorData?.mapPoint }}</div>
+
+
+
+    <h3>Трассы:</h3>
+
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let route of sectorData?.climbingRoutes" (toggle)="toggleDescriptionClimbingRoute(route)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <strong>{{ route.name }}</strong> ({{ route.category }}, {{route.testimonial}} {{route.boltCount}})
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p *ngIf="route.boltCount">Количество точек: {{ route.boltCount }}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
 </div>
-
-<h3>Трассы:</h3>
-
-<ul>
-  <li *ngFor="let route of sectorData?.climbingRoutes">
-    <strong>{{ route.name }}</strong> ({{ route.category }}, {{route.testimonial}} {{route.boltCount}})
-  </li>
-</ul>
+<!--<app-rockroute></app-rockroute>-->
 
 
 

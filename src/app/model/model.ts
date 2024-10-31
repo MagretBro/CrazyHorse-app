@@ -13,17 +13,7 @@
 
 
 // массив скальных массивов внутри страны, как CrazyHorse
-// export class Region {
-//   id: number = 1000;
-//   name: string="";
-//   images?: string[] = [];
-//   countryId: Country[] | undefined;
-//   massiveId: Massive[] = [];
-//   SectorsId: Sector[]=[];
-//   geo?: string="";
-//   map?: string="";
-//   information?: string="";
-// }
+
 
 export interface Region {
   id: string;
@@ -55,23 +45,18 @@ export class Massive {
 export class Sector {
   id: string | undefined;
   name: string="";
-  information: string="";
-  geo: string=""; // тут строка линка гугл мапс
-  map?: string=""; // тут сам виджет карты если нужно
-  pictures?: Picture[] = [];
+  numSector: string="";
+  describe?: string = "";       // Описание, не обязательное поле
+  mapPoint?: string=""; // тут сам виджет карты если нужно
+  pictures: Picture[] = [];
   massiveId: Massive[] = [];
   climbingRoutes: ClimbingRoute[] = [];
-
-  // countryId: Country[] = [];
-  // SectorsId: Sector[]=[];
-  // RegionId: Region[]=[];
 }
 
 export class ClimbingRoute {
   id: string | undefined;
   name: string = "";
   describe?: string = "";
-
   mapPoint?: string = ""; // строка линка гугл мапс
   mapVidget?: string = ""; // виджет карты
   picture?: string[] = [];
@@ -79,6 +64,7 @@ export class ClimbingRoute {
   category: string = ""; // Категория сложности
   testimonial: string = ""; // Тип, высота, число шлямбуров
   boltCount: number = 0; // Количество болтов, threads
+  numRouter: string = "";
   // countryId: Country[] = [];
   // RegionId: Region[] = [];
   // massive: string = ""; // Название массива или скалы
