@@ -1,3 +1,53 @@
+* {
+  font-family: Roboto, sans-serif;
+}
+
+.category-list {
+  display: flex;
+  gap: 1rem;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    font-weight: bold;
+    font-size: 1rem;
+  }
+}
+.wr-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; // Отступ между блоками
+  margin: 5%;
+
+  .row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .h3 {
+    font-size: 1.5rem; // Увеличиваем размер шрифта
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    gap: 1rem;
+    width: 20%;
+  }
+
+  .wr-describe {
+    font-family: 'Roboto', sans-serif; // Красивый шрифт без засечек
+    font-size: 1.1rem; // Размер текста для удобного чтения
+    line-height: 1.6; // Пространство между строками
+    color: #333; // Темный цвет для улучшенной читаемости
+  }
+
+  .wr-describe,
+  .wr-map,
+  mat-accordion {
+    flex: 1;             // Занимает оставшееся пространство справа
+  }
+
+  }
 
 
 .routePic img {

@@ -13,13 +13,14 @@ import { SectorComponent } from './components/sector/sector.component';
 import { RockrouteComponent } from './components/rockroute/rockroute.component';
 import {MatMenu, MatMenuModule, MatMenuTrigger} from "@angular/material/menu";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
-import { RoutedescribeComponent } from './components/routedescribe/routedescribe.component';
+// import { RoutedescribeComponent } from './components/routedescribe/routedescribe.component';
 import {MatExpansionModule} from "@angular/material/expansion";
 import { HttpClientModule } from '@angular/common/http';
 import { MassiveComponent} from "./components/massive/massive.component";
 import {NgOptimizedImage} from "@angular/common";
 import {MatListModule} from '@angular/material/list';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {ListmassivesComponent} from "./components/listmassives/listmassives.component";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     HeaderComponent,
     SectorComponent,
     RockrouteComponent,
-    RoutedescribeComponent,
+    ListmassivesComponent,
+    //RoutedescribeComponent,
     MassiveComponent,
 
   ],

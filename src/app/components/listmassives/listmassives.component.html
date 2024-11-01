@@ -1,0 +1,17 @@
+
+<!-- Отображение списка секторов -->
+<div *ngIf="massiveData?.sectors.length">
+  <h3>Sectors:</h3>
+  <ul>
+    <li *ngFor="let sector of massiveData.sectors" (click)="onSectorPage(sector.id)">
+      <strong>{{ sector.name }}</strong> (ID: {{ sector.id }})
+    </li>
+  </ul>
+</div>
+
+
+<!-- Показать сообщение, если данных нет -->
+<div *ngIf="!massiveData">
+  <p>No massive data available.</p>
+</div>
+

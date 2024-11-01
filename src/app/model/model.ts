@@ -65,6 +65,10 @@ export class ClimbingRoute {
   testimonial: string = ""; // Тип, высота, число шлямбуров
   boltCount: number = 0; // Количество болтов, threads
   numRouter: string = "";
+  type:  string = "";
+  height:  string = "";
+  bolt:  string = "";
+
   // countryId: Country[] = [];
   // RegionId: Region[] = [];
   // massive: string = ""; // Название массива или скалы

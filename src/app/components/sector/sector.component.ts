@@ -39,7 +39,8 @@ export class SectorComponent implements OnInit {
   async ngOnInit() {
     this.sectorId = this.route.snapshot.paramMap.get('id')!;
     await this.getSectorData();
-    //await this.getPictures();
+    const categoryCounts = this.countRoutesByCategory();
+    console.log(categoryCounts);
   }
   async getSectorData() {
     this.sectorService.GetSectorById(this.sectorId).subscribe(
@@ -63,7 +64,11 @@ export class SectorComponent implements OnInit {
         });
 
         data.climbingRoutes
-          .sort((a, b) => (a.numRouter || '').localeCompare(b.numRouter || ''))
+          .sort((a, b) => {
+          const numA = parseFloat(a.numRouter || '');
+          const numB = parseFloat(b.numRouter || '');
+          return numA - numB;
+          })
           .forEach(c => {
           let vcr: ViewClimbingRoute = {
             id: c.id,
@@ -77,14 +82,14 @@ export class SectorComponent implements OnInit {
             testimonial: c.testimonial,
             boltCount: c.boltCount,
             numRouter: c.numRouter,
+            type: c.type,
+            height: c.height,
+            bolt: c.bolt,
             isOpen: false
           }
           viewData.climbingRoutes.push(vcr)
         })
-
         this.sectorData = viewData;
-        // console.log('this.sectorData');
-        // console.log(this.sectorData);
       },
       (error) => {
         console.error('Error fetching sector data:', error);
@@ -93,6 +98,86 @@ export class SectorComponent implements OnInit {
       }
     );
   }
+
+// Функция для подсчета количества трасс по каждой категории
+  countRoutesByCategory() {
+    const categoryCounts: { [key: string]: number } = {
+      '5a': 0,
+      '5b': 0,
+      '5c': 0,
+      '6a': 0,
+      '6b': 0,
+      '6c': 0,
+      '7a': 0,
+      '7b': 0,
+      '7c': 0,
+      '8a': 0,
+      '8b': 0 // и выше
+    };
+
+    // Проверка, если данные о секторе и маршрутах существуют
+    if (!this.sectorData || !this.sectorData.climbingRoutes) return categoryCounts;
+
+    this.sectorData.climbingRoutes.forEach(route => {
+      let category = route.category?.trim() || ''; // Убираем пробелы в начале и конце
+
+      // Учитываем категории с плюсом (5a+, 6b+) и приводим их к стандартным
+      if (category.endsWith('+')) {
+        category = category.slice(0, -1);
+      }
+
+      // Проверяем, что категория соответствует одному из значений
+      switch (category) {
+        case '5':
+        case '5a':
+          categoryCounts['5a']++;
+          break;
+        case '5b':
+          categoryCounts['5b']++;
+          break;
+        case '5c':
+          categoryCounts['5c']++;
+          break;
+        case '6a':
+          categoryCounts['6a']++;
+          break;
+        case '6b':
+          categoryCounts['6b']++;
+          break;
+        case '6c':
+          categoryCounts['6c']++;
+          break;
+        case '7a':
+          categoryCounts['7a']++;
+          break;
+        case '7b':
+          categoryCounts['7b']++;
+          break;
+        case '7c':
+          categoryCounts['7c']++;
+          break;
+        case '8a':
+          categoryCounts['8a']++;
+          break;
+        // Все категории выше 8b будут считаться в категорию '8b'
+        default:
+          if (category.startsWith('8') || parseFloat(category) > 8) {
+            categoryCounts['8b']++;
+          }
+          break;
+      }
+    });
+
+    return categoryCounts;
+  }
+
+  // Функция отброса 0 значений
+
+  getNonZeroCategories(): string[] {
+    const categoryCounts = this.countRoutesByCategory();
+    return Object.keys(categoryCounts).filter(category => categoryCounts[category] > 0);
+  }
+
 
   toggleZoom(pictureId: string) {
     this.selectedPictureId = this.selectedPictureId === pictureId ? null : pictureId;

@@ -1,11 +1,8 @@
 <app-header></app-header>
-
+<app-listmassives></app-listmassives>
 
 <div class="wr-main">
-    <div class="h2">{{sectorData?.name}}</div>
-    <div class="Complexity">Категории: 5a- 5b 5c 6a 6b 6c 7a 7b 7c+</div>
-    <p>Число этих трасс на {{sectorData?.name}}: 5  6  7</p>
-
+  <div class="h3">{{sectorData?.name}}</div>
 
 
     <div class="wr-routePic" *ngFor="let pic of sectorData?.pictures">
@@ -16,25 +13,41 @@
              (click)="toggleZoom(pic.id)">
       </div>
     </div>
-  <div class="wr-describe">
-    {{ sectorData?.describe }}
+  <div class="row">
+    <div class="h3">Сложность трасс:</div>
+    <ul class="category-list">
+      <li *ngFor="let category of getNonZeroCategories()">
+        {{ category }}: {{ countRoutesByCategory()[category] }}
+      </li>
+    </ul>
   </div>
-  <div class="wr-map">{{ sectorData?.mapPoint }}</div>
 
+  <div class="row">
+    <div class="h3">Как добраться:</div>
+    <div class="wr-describe">
+      {{ sectorData?.describe }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="h3">Карта:</div>
+    <div class="wr-map">{{ sectorData?.mapPoint }}</div>
+  </div>
 
+  <div class="row">
+    <div class="h3">Трассы:</div>
 
-    <h3>Трассы:</h3>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let route of sectorData?.climbingRoutes" (toggle)="toggleDescriptionClimbingRoute(route)">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>{{ route.numRouter }}</strong> &nbsp; <strong>{{ route.name }}</strong> &nbsp; ({{ route.category }}, {{route.testimonial}} {{route.boltCount}})
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p *ngIf="route.boltCount">Количество точек: {{ route.boltCount }}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+  </div>
 
-    <mat-accordion>
-      <mat-expansion-panel *ngFor="let route of sectorData?.climbingRoutes" (toggle)="toggleDescriptionClimbingRoute(route)">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <strong>{{ route.name }}</strong> ({{ route.category }}, {{route.testimonial}} {{route.boltCount}})
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <p *ngIf="route.boltCount">Количество точек: {{ route.boltCount }}</p>
-      </mat-expansion-panel>
-    </mat-accordion>
 </div>
 <!--<app-rockroute></app-rockroute>-->
 

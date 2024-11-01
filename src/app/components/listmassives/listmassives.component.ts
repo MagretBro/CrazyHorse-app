@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {MassiveService} from "../../service/massive.service";
 import {Massive} from "../../model/model";
+import {MassiveService} from "../../service/massive.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Sector} from "../../model/model";
 
 @Component({
-  selector: 'app-massive',
-  templateUrl: './massive.component.html',
-  styleUrl: './massive.component.scss'
+  selector: 'app-listmassives',
+  templateUrl: './listmassives.component.html',
+  styleUrl: './listmassives.component.scss'
 })
-export class MassiveComponent implements OnInit {
-
+export class ListmassivesComponent implements OnInit {
   massiveId!: string;
   massiveData: Massive | null = null;
   constructor(
@@ -48,5 +48,6 @@ export class MassiveComponent implements OnInit {
     }
     await this.router.navigate(['/sector', sectorId]);
   }
+
 
 }
