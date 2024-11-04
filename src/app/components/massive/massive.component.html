@@ -3,10 +3,18 @@
 
 <!--<p>Massive Data:</p>-->
 <app-header></app-header>
-
+<!--<app-listmassives></app-listmassives>-->
 
 <div *ngIf="massiveData">
   <h2>{{ massiveData.name }}</h2>
+
+
+  <div class="row">
+    <div class="h3">Сложность трасс:</div>
+    <ul class="category-list">
+
+    </ul>
+  </div>
 
   <div class="Complexity">Категории: 5a- 5b 5c 6a 6b 6c 7a 7b 7c+</div>
   <p>Число этих трасс на массиве 5  6  7</p>
@@ -28,7 +36,7 @@
     <h3>Sectors:</h3>
     <ul>
       <li *ngFor="let sector of massiveData.sectors" (click)="onSectorPage(sector.id)">
-        <strong>{{ sector.name }}</strong> (ID: {{ sector.id }})
+        {{sector.numSector}} <strong>{{ sector.name }}</strong> (ID: {{ sector.id }})
       </li>
     </ul>
   </div>

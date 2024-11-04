@@ -1,90 +1,155 @@
+// Основной стиль для Angular Material и базовая стилизация
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import '@angular/material/core/theming/all-theme';
+//@include mat-core();
+
 * {
-  font-family: Roboto, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
 }
 
-.category-list {
-  display: flex;
-  gap: 1rem;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-
-  li {
-    font-weight: bold;
-    font-size: 1rem;
-  }
-}
+// Контейнер для основного содержимого
 .wr-main {
   display: flex;
   flex-direction: column;
-  gap: 1rem; // Отступ между блоками
-  margin: 5%;
-
-  .row {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .h3 {
-    font-size: 1.5rem; // Увеличиваем размер шрифта
-    font-weight: bold;
-    font-family: 'Roboto', sans-serif;
-    gap: 1rem;
-    width: 20%;
-  }
-
-  .wr-describe {
-    font-family: 'Roboto', sans-serif; // Красивый шрифт без засечек
-    font-size: 1.1rem; // Размер текста для удобного чтения
-    line-height: 1.6; // Пространство между строками
-    color: #333; // Темный цвет для улучшенной читаемости
-  }
-
-  .wr-describe,
-  .wr-map,
-  mat-accordion {
-    flex: 1;             // Занимает оставшееся пространство справа
-  }
-
-  }
-
-
-.routePic img {
-  transition: transform 0.3s ease, width 0.3s ease;
-  cursor: pointer;
-  width: 300px;
-  max-width: 100%;
-  height: auto;
+  gap: 2rem;
+  padding: 2rem;
+  margin-left: 200px; // Оставляем место для бокового меню
+  transition: margin 0.3s ease;
 }
 
-.routePic img.zoomed {
-  width: 100%;
-  transform: scale(1);
-  cursor: zoom-out;
+// Стили для заголовка сектора
+.h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
 }
 
-@media (max-width: 768px) {
   .routePic img {
-    width: 100vw;
+    transition: transform 0.3s ease, width 0.3s ease;
+    cursor: pointer;
+    width: 300px;
+    max-width: 100%;
     height: auto;
-    transform: none;
-    cursor: default;
+  }
+
+  .routePic img.zoomed {
+    width: 100%;
+    transform: scale(1);
+    cursor: zoom-out;
+  }
+  @media (max-width: 768px) {
+    .wr-main {
+      margin-left: 200px;
+      padding: 1rem;
+    }
+
+    .routePic img {
+      max-width: 100%;
+    }
+  }
+
+// Список категорий сложности трасс
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: 0.5rem 1rem;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    font-weight: bold;
   }
 }
 
+// Описание сектора и карты
+.wr-describe, .wr-map {
+  color: #555;
+  line-height: 1.6;
+}
+
+// Многострочный текст и карта
+.mat-accordion {
+  width: 100%;
+}
+
+// Стиль для row-контейнеров
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 
 
-
-
-
-//
-//.wr-routePic {
-//  display: flex;
-//  flex-wrap: wrap;
-//  gap: 20px;
+// 2 version
+//* {
+//  font-family: Roboto, sans-serif;
 //}
 //
+//.category-list {
+//  display: flex;
+//  gap: 1rem;
+//  list-style-type: none;
+//  padding: 0;
+//  margin: 0;
+//
+//  li {
+//    font-weight: bold;
+//    font-size: 1rem;
+//  }
+//}
+//.wr-main {
+//  display: flex;
+//  flex-direction: column;
+//  gap: 1rem; // Отступ между блоками
+//  margin: 5%;
+//
+//  .row {
+//    display: flex;
+//    align-items: flex-start;
+//    gap: 1rem;
+//  }
+//
+//  .h3 {
+//    font-size: 1.5rem; // Увеличиваем размер шрифта
+//    font-weight: bold;
+//    font-family: 'Roboto', sans-serif;
+//    gap: 1rem;
+//    width: 20%;
+//  }
+//
+//  .wr-describe {
+//    font-family: 'Roboto', sans-serif; // Красивый шрифт без засечек
+//    font-size: 1.1rem; // Размер текста для удобного чтения
+//    line-height: 1.6; // Пространство между строками
+//    color: #333; // Темный цвет для улучшенной читаемости
+//  }
+//
+//  .wr-describe,
+//  .wr-map,
+//  mat-accordion {
+//    flex: 1;             // Занимает оставшееся пространство справа
+//  }
+//
+//  }
+//
+//
+//.routePic img {
+//  transition: transform 0.3s ease, width 0.3s ease;
+//  cursor: pointer;
+//  width: 300px;
+//  max-width: 100%;
+//  height: auto;
+//}
+//
+//.routePic img.zoomed {
+//  width: 100%;
+//  transform: scale(1);
+//  cursor: zoom-out;
+//}
 //
 //@media (max-width: 768px) {
 //  .routePic img {
@@ -95,19 +160,6 @@
 //  }
 //}
 //
-//.routePic {
-//  img {
-//    transition: transform 0.3s ease, width 0.3s ease;
-//    cursor: pointer;
-//    width: 50%;
-//    max-width: 100%;
-//    height: auto;
 //
-//    &.zoomed {
-//      width: 100%;
-//      transform: scale(1.1);
-//      cursor: zoom-out;
-//    }
-//  }
-//}
-//
+
+

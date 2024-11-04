@@ -28,12 +28,11 @@ export class MassiveComponent implements OnInit {
     // Запрос к API через сервис
     this.massiveService.GetMassiveById(this.massiveId).subscribe(
       (data: Massive) => {
-        console.log('data');
-        console.log(data);
-
-        //console.log('Data before sorting:', data.sectors);  // Лог до сортировки
-
-        data.sectors = data.sectors?.sort((a,b)=>(a.numSector || '').localeCompare(b.numSector || ''))
+        data.sectors = data.sectors?.sort((a,b)=>{
+            const numA = parseFloat(a.numSector || '');
+            const numB = parseFloat(b.numSector || '');
+            return numA - numB;
+          })
         this.massiveData = data; // Сохраняем данные в переменную
       },
       (error) => {
@@ -48,5 +47,11 @@ export class MassiveComponent implements OnInit {
     }
     await this.router.navigate(['/sector', sectorId]);
   }
+
+
+
+
+
+
 
 }

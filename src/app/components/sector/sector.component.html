@@ -40,10 +40,10 @@
         <mat-expansion-panel *ngFor="let route of sectorData?.climbingRoutes" (toggle)="toggleDescriptionClimbingRoute(route)">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <strong>{{ route.numRouter }}</strong> &nbsp; <strong>{{ route.name }}</strong> &nbsp; ({{ route.category }}, {{route.testimonial}} {{route.boltCount}})
+              <strong>{{ route.numRouter }}</strong> &nbsp; <strong>{{ route.name }}</strong> &nbsp; ({{ route.category }}, {{route.height}}, {{route.boltCount}})
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p *ngIf="route.boltCount">Количество точек: {{ route.boltCount }}</p>
+          <p *ngIf="route.boltCount">Описание: {{route.testimonial}}; {{route.describe}} {{ route.bolt }}</p>
         </mat-expansion-panel>
       </mat-accordion>
   </div>
