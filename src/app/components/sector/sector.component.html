@@ -17,7 +17,7 @@
     <div class="h3">Сложность трасс:</div>
     <ul class="category-list">
       <li *ngFor="let category of getNonZeroCategories()">
-        {{ category }}: {{ countRoutesByCategory()[category] }}
+        {{ category }}: {{ routeCountsForAllSectorsByCategory[category] || 0}}
       </li>
     </ul>
   </div>

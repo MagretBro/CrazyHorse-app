@@ -1,48 +1,61 @@
-<!--<p>massive works!</p>-->
-<!--<div>Массив: {{massiveData?.name}}</div>-->
-
-<!--<p>Massive Data:</p>-->
 <app-header></app-header>
 <!--<app-listmassives></app-listmassives>-->
+<div class="wr-main">
+  <div *ngIf="massiveData">
+<!--    <h2>{{ massiveData.name }}</h2>-->
 
-<div *ngIf="massiveData">
-  <h2>{{ massiveData.name }}</h2>
+    <div class="row">
+      <div class="h3"> {{ massiveData.name }}:</div>
+      <ul class="category-list">
+        <li *ngFor="let category of getNonZeroCategories()">
+          {{ category }}: {{ routeCountsByCategory[category] }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="row">
+      <div class="h3">Описание:</div>
+      <div class="wr-describe">
+        {{ massiveData.describe }}
+      </div>
+    </div>
+
+    <!-- Отображение картинки -->
+    <img *ngIf="massiveData.picture" [src]="massiveData.picture" alt="Massive Image">
+
+    <!-- Координаты на карте -->
+    <div *ngIf="massiveData.map">
+      <p>Map Point: {{ massiveData.map }}</p>
+    </div>
 
 
-  <div class="row">
-    <div class="h3">Сложность трасс:</div>
-    <ul class="category-list">
+    <!-- Отображение списка секторов -->
 
-    </ul>
+    <div class="row">
+      <div *ngIf="massiveData.sectors?.length">
+
+        <div class="h3">Сектора:</div>
+        <ul>
+          <li *ngFor="let sector of massiveData.sectors" (click)="onSectorPage(sector.id)">
+            {{sector.numSector}} <strong>{{ sector.name }}</strong> (ID: {{ sector.id }})
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+<!--    <div *ngIf="massiveData.sectors?.length">-->
+<!--      <h3>Сектора:</h3>-->
+<!--      <ul>-->
+<!--        <li *ngFor="let sector of massiveData.sectors" (click)="onSectorPage(sector.id)">-->
+<!--          {{sector.numSector}} <strong>{{ sector.name }}</strong> (ID: {{ sector.id }})-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
   </div>
 
-  <div class="Complexity">Категории: 5a- 5b 5c 6a 6b 6c 7a 7b 7c+</div>
-  <p>Число этих трасс на массиве 5  6  7</p>
-
-
-  <p>{{ massiveData.describe }}</p>
-
-  <!-- Отображение картинки -->
-  <img *ngIf="massiveData.picture" [src]="massiveData.picture" alt="Massive Image">
-
-  <!-- Координаты на карте -->
-  <div *ngIf="massiveData.map">
-    <p>Map Point: {{ massiveData.map }}</p>
+  <!-- Показать сообщение, если данных нет -->
+  <div *ngIf="!massiveData">
+    <p>Здесь мы еще не бывали</p>
   </div>
-
-
-  <!-- Отображение списка секторов -->
-  <div *ngIf="massiveData.sectors?.length">
-    <h3>Sectors:</h3>
-    <ul>
-      <li *ngFor="let sector of massiveData.sectors" (click)="onSectorPage(sector.id)">
-        {{sector.numSector}} <strong>{{ sector.name }}</strong> (ID: {{ sector.id }})
-      </li>
-    </ul>
-  </div>
-</div>
-
-<!-- Показать сообщение, если данных нет -->
-<div *ngIf="!massiveData">
-  <p>No massive data available.</p>
 </div>

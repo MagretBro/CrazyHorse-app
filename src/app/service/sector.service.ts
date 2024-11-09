@@ -27,7 +27,28 @@ export class SectorService {
 
   }
 
+  getRouteCountsForAllSectorsByCategory(sectorId: string) {
+    return this.http.get<{[key: string]: number}>(`${this.apiUrl}/${sectorId}/routeCountsForAllSectorsByCategory`);
+  }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////
 
   //
   // private apiUrl = 'http://localhost:5000/api/services';

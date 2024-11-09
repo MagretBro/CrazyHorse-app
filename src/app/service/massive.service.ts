@@ -16,6 +16,10 @@ export class MassiveService {
     return this.http.get<Massive[]>(`${this.apiUrl}/region/${regionId}`);
   }
 
+  getRouteCountsByCategory(massiveId: string) {
+    return this.http.get<{[key: string]: number}>(`${this.apiUrl}/${massiveId}/routeCountsByCategory`);
+  }
+
   GetMassiveById(massiveId: string): Observable<Massive> {
     return this.http.get<Massive>(`${this.apiUrl}/massive/${massiveId}`);
   }

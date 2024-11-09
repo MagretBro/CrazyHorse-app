@@ -12,6 +12,7 @@ export class MassiveComponent implements OnInit {
 
   massiveId!: string;
   massiveData: Massive | null = null;
+  routeCountsByCategory: { [key: string]: number} = {};
   constructor(
     private massiveService: MassiveService,
     private router: Router,
@@ -21,6 +22,7 @@ export class MassiveComponent implements OnInit {
   async ngOnInit() {
     this.massiveId = this.route.snapshot.paramMap.get('id')!;
     await this.getMassiveData();
+    this.getRouteCountsByCategory();
   }
 
   async getMassiveData() {
@@ -48,10 +50,17 @@ export class MassiveComponent implements OnInit {
     await this.router.navigate(['/sector', sectorId]);
   }
 
-
-
-
-
-
+  getRouteCountsByCategory() {
+    this.massiveService.getRouteCountsByCategory(this.massiveId).subscribe(
+      (data) => {
+        console.log('Route counts by category:', data); // Добавлен лог для проверки данных
+        this.routeCountsByCategory = data;
+      },
+      (error) => console.error('Error fetching route counts by category:', error)
+    );
+  }
+  getNonZeroCategories(): string[] {
+    return Object.keys(this.routeCountsByCategory).filter(category => this.routeCountsByCategory[category] > 0);
+  }
 
 }
