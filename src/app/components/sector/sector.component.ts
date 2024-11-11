@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Sector, Picture, ClimbingRoute } from "../../model/model";
+import { Sector, Picture, ClimbingRoute, Massive } from "../../model/model";
 import { SectorService } from "../../service/sector.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { PictureService } from "../../service/picture.service";
@@ -20,6 +20,8 @@ class ViewSector extends Sector {
 })
 export class SectorComponent implements OnInit {
   sectorId!: string;
+  listSectors: Sector[]=[];
+  // listSectors: Sector | null = null;
   sectorData: ViewSector | null = null;
   selectedPictureId: string | null = null;
   isZoomed: boolean = false;
@@ -39,6 +41,52 @@ export class SectorComponent implements OnInit {
     await this.getSectorData();
     this.getRouteCountsForAllSectorsByCategory(); // Вызов метода для получения категорий с бэкенда
   }
+
+  async getAllSectors() {
+    let massiveId = this.sectorData?.massiveId;
+    if (!massiveId) {
+      console.log('Отсутствует massiveId');
+      return;
+    }
+// Вывод секторов по massiveId
+    this.sectorService.getListSectorsByMassiveId(massiveId).subscribe(
+      (res:Sector[])=> {
+        console.log("resLIST");
+        console.log(res);
+        this.listSectors = res
+          .map(sector => ({
+            ...sector,
+            numSectorNumber: parseFloat(sector.numSector || '0')
+          }))
+          .sort((a, b) => a.numSectorNumber - b.numSectorNumber);
+
+        console.log("Отсортированный список секторов:", this.listSectors);
+      },
+      //   this.listSectors = res
+      //     .slice() // Создаем копию массива
+      //     .sort((a, b) => {
+      //       const numA = parseFloat(a.numSector || '0');
+      //       const numB = parseFloat(b.numSector || '0');
+      //       return numA - numB;
+      //     });
+      //   console.log("Отсортированный список секторов:", this.listSectors);
+      // },
+      error => console.error('Ошибка при получении списка секторов:', error)
+    );
+}
+
+
+  async onSectorPage(sectorId: string | undefined) {
+
+    if(sectorId === undefined) {
+      return;
+    }
+    this.sectorId = sectorId;
+    await this.getSectorData();
+    this.getRouteCountsForAllSectorsByCategory();
+  }
+
+
 
   async getSectorData() {
     this.sectorService.GetSectorById(this.sectorId).subscribe(
@@ -81,12 +129,31 @@ export class SectorComponent implements OnInit {
             viewData.climbingRoutes.push(vcr);
           });
         this.sectorData = viewData;
+        this.getAllSectors();
       },
       error => {
         console.error('Error fetching sector data:', error);
       }
     );
   }
+
+  /////////ТУТ проблема 2del
+
+  // getListSectorsByMassiveId() {
+  //   this.sectorService.GetListSectorsByMassiveId(this.sectorId).subscribe(
+  //     data => {
+  //       this.routeGetListSectorsByMassiveId = data;
+  //     },
+  //     error => {
+  //       console.error('Error fetching route counts by category:', error);
+  //     }
+  //   );
+  // }
+
+
+
+
+
 
   getRouteCountsForAllSectorsByCategory() {
     this.sectorService.getRouteCountsForAllSectorsByCategory(this.sectorId).subscribe(

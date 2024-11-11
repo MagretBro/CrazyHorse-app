@@ -1,5 +1,7 @@
 <app-header></app-header>
 <!--<app-listmassives></app-listmassives>-->
+<!--<app-listmassives [massiveId]="massiveId"></app-listmassives>-->
+
 <div class="wr-main">
   <div *ngIf="massiveData">
 <!--    <h2>{{ massiveData.name }}</h2>-->
@@ -37,21 +39,12 @@
         <div class="h3">Сектора:</div>
         <ul>
           <li *ngFor="let sector of massiveData.sectors" (click)="onSectorPage(sector.id)">
-            {{sector.numSector}} <strong>{{ sector.name }}</strong> (ID: {{ sector.id }})
+            {{sector.numSector}} <strong>{{ sector.name }}</strong>
           </li>
         </ul>
       </div>
     </div>
 
-
-<!--    <div *ngIf="massiveData.sectors?.length">-->
-<!--      <h3>Сектора:</h3>-->
-<!--      <ul>-->
-<!--        <li *ngFor="let sector of massiveData.sectors" (click)="onSectorPage(sector.id)">-->
-<!--          {{sector.numSector}} <strong>{{ sector.name }}</strong> (ID: {{ sector.id }})-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--    </div>-->
   </div>
 
   <!-- Показать сообщение, если данных нет -->

@@ -49,7 +49,7 @@ export class Sector {
   describe?: string = "";       // Описание, не обязательное поле
   mapPoint?: string=""; // тут сам виджет карты если нужно
   pictures: Picture[] = [];
-  massiveId: Massive[] = [];
+  massiveId?: string;
   climbingRoutes: ClimbingRoute[] = [];
 }
 
@@ -68,12 +68,6 @@ export class ClimbingRoute {
   type:  string = "";
   height:  string = "";
   bolt:  string = "";
-
-  // countryId: Country[] = [];
-  // RegionId: Region[] = [];
-  // massive: string = ""; // Название массива или скалы
-  // sector: string = ""; // Название сектора
-  // numOfSector: number = 0; // Номер сектора
 }
 
 export class MountainNameResultModel {

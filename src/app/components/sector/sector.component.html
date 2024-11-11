@@ -1,5 +1,18 @@
 <app-header></app-header>
-<app-listmassives></app-listmassives>
+<!--<app-listmassives [massiveId]="sectorData?.massiveId?.toString()"></app-listmassives>-->
+<div class="sector-list">
+  <div class="h3">Сектора:</div>
+<!--    <ul>-->
+<!--      <li *ngFor="let sector of listSectors" (click)="onSectorPage(sector.id)">-->
+<!--        {{sector.numSector}} - {{sector.name}}-->
+<!--      </li>-->
+<!--    </ul>-->
+
+    <div *ngFor="let sector of listSectors" (click)="onSectorPage(sector.id)">
+      {{sector.numSector}} - {{sector.name}}
+    </div>
+</div>
+
 
 <div class="wr-main">
   <div class="h3">{{sectorData?.name}}</div>

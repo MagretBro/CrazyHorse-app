@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MassiveService} from "../../service/massive.service";
 import {Massive} from "../../model/model";
-
 @Component({
   selector: 'app-massive',
   templateUrl: './massive.component.html',
@@ -25,6 +24,7 @@ export class MassiveComponent implements OnInit {
     this.getRouteCountsByCategory();
   }
 
+  // Получение списка секторов на массиве
   async getMassiveData() {
     console.log('Fetching massive data...');  // Добавлен лог
     // Запрос к API через сервис
