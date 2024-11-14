@@ -39,7 +39,7 @@
         <div class="h3">Сектора:</div>
         <ul>
           <li *ngFor="let sector of massiveData.sectors" (click)="onSectorPage(sector.id)">
-            {{sector.numSector}} <strong>{{ sector.name }}</strong>
+            {{sector.numSector}} <strong>{{ sector.name }}</strong> {{sector.id}}
           </li>
         </ul>
       </div>

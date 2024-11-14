@@ -1,53 +1,61 @@
-<app-header></app-header>
-<!--<app-listmassives [massiveId]="sectorData?.massiveId?.toString()"></app-listmassives>-->
-<div class="sector-list">
-  <div class="h3">Сектора:</div>
-<!--    <ul>-->
-<!--      <li *ngFor="let sector of listSectors" (click)="onSectorPage(sector.id)">-->
-<!--        {{sector.numSector}} - {{sector.name}}-->
-<!--      </li>-->
-<!--    </ul>-->
 
-    <div *ngFor="let sector of listSectors" (click)="onSectorPage(sector.id)">
+<app-header></app-header>
+<div class="main-container">
+
+  <div class="sector-list">
+    <div class="h4">Список секторов:</div>
+    <div class="sector-item" style="width: 100%;" *ngFor="let sector of listSectors" (click)="onSectorPage(sector.id)">
       {{sector.numSector}} - {{sector.name}}
     </div>
-</div>
+  </div>
 
 
-<div class="wr-main">
-  <div class="h3">{{sectorData?.name}}</div>
+  <div class="wr-main">
 
+    <div class="h3">{{sectorData?.name}}</div>
+<!--    <div class="wr-routePic" *ngFor="let pic of sectorData?.pictures">-->
+<!--      <div class="routePic">-->
+<!--        <img [src]="'./assets/' + sectorData?.id + '/' + pic.name + '.jpeg'"-->
+<!--             [attr.srcset]="getImagePath(sectorData?.id, pic.name)"-->
+<!--             alt="Img of {{sectorData?.name}}"-->
+<!--             [class.zoomed]="selectedPictureId === pic.id"-->
+<!--             (click)="toggleZoom(pic.id)">-->
+<!--      </div>-->
+<!--    </div>-->
 
     <div class="wr-routePic" *ngFor="let pic of sectorData?.pictures">
       <div class="routePic">
-        <img [src]="'./assets/hw/'+ pic.name + '.jpeg'"
+         <img [src]="getImagePath(sectorData?.id, pic.name)"
              alt="Image of {{sectorData?.name}}"
              [class.zoomed]="selectedPictureId === pic.id"
              (click)="toggleZoom(pic.id)">
       </div>
     </div>
-  <div class="row">
-    <div class="h3">Сложность трасс:</div>
-    <ul class="category-list">
-      <li *ngFor="let category of getNonZeroCategories()">
-        {{ category }}: {{ routeCountsForAllSectorsByCategory[category] || 0}}
-      </li>
-    </ul>
-  </div>
 
-  <div class="row">
-    <div class="h3">Как добраться:</div>
-    <div class="wr-describe">
-      {{ sectorData?.describe }}
+
+    <div class="row">
+      <div class="h3">Сложность трасс:</div>
+      <ul class="category-list">
+        <li *ngFor="let category of getNonZeroCategories()">
+          {{ category }}: {{ routeCountsForAllSectorsByCategory[category] || 0}}
+        </li>
+      </ul>
     </div>
-  </div>
-  <div class="row">
-    <div class="h3">Карта:</div>
-    <div class="wr-map">{{ sectorData?.mapPoint }}</div>
-  </div>
 
-  <div class="row">
-    <div class="h3">Трассы:</div>
+    <div class="row">
+      <div class="h3">Как добраться:</div>
+      <div class="wr-describe">
+        {{ sectorData?.describe }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="h3">Карта:</div>
+      <div class="wr-map">{{ sectorData?.mapPoint }}</div>
+    </div>
+
+    <div class="row">
+      <div class="h3">Трассы:</div>
 
       <mat-accordion>
         <mat-expansion-panel *ngFor="let route of sectorData?.climbingRoutes" (toggle)="toggleDescriptionClimbingRoute(route)">
@@ -59,10 +67,8 @@
           <p *ngIf="route.boltCount">Описание: {{route.testimonial}}; {{route.describe}} {{ route.bolt }}</p>
         </mat-expansion-panel>
       </mat-accordion>
+    </div>
+
   </div>
 
 </div>
-<!--<app-rockroute></app-rockroute>-->
-
-
-

@@ -21,6 +21,8 @@ import {NgOptimizedImage} from "@angular/common";
 import {MatListModule} from '@angular/material/list';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {ListmassivesComponent} from "./components/listmassives/listmassives.component";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 @NgModule({
   declarations: [
@@ -30,7 +32,6 @@ import {ListmassivesComponent} from "./components/listmassives/listmassives.comp
     SectorComponent,
     RockrouteComponent,
     ListmassivesComponent,
-    //RoutedescribeComponent,
     MassiveComponent,
 
   ],
@@ -52,7 +53,10 @@ import {ListmassivesComponent} from "./components/listmassives/listmassives.comp
         MatListModule,
         HttpClientModule,
         NgOptimizedImage,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatCheckboxModule,
+        MatSidenavModule,
+
     ],
   providers: [],
   bootstrap: [AppComponent]

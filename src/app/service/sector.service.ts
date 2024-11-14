@@ -21,17 +21,6 @@ export class SectorService {
     return res;
   }
 
-
-  //2del
-  // GetListSectorsByMassiveId(Id: string): Observable<Massive> {
-  //   let resM = this.http.get<Massive>(`${this.apiUrl}/getListSectorsByMassiveId/${Id}`);
-  //   return resM;
-  // }
-
-
-
-
-
   getRouteCountsForAllSectorsByCategory(sectorId: string) {
     return this.http.get<{[key: string]: number}>(`${this.apiUrl}/${sectorId}/routeCountsForAllSectorsByCategory`);
   }
