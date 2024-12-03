@@ -5,6 +5,7 @@ import {RockrouteComponent} from "./components/rockroute/rockroute.component";
 import {MassiveComponent} from "./components/massive/massive.component";
 import {SectorComponent} from "./components/sector/sector.component";
 import {ListmassivesComponent} from "./components/listmassives/listmassives.component";
+import {LoginComponent} from "./components/login/login.component";
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -12,7 +13,7 @@ const routes: Routes = [
   { path: 'massive/:id', component: MassiveComponent },
   { path: 'sector/:id', component: SectorComponent },
   { path: 'list', component: ListmassivesComponent },
-
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({

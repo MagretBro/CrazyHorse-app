@@ -13,16 +13,6 @@
   <div class="wr-main">
 
     <div class="h3">{{sectorData?.name}}</div>
-<!--    <div class="wr-routePic" *ngFor="let pic of sectorData?.pictures">-->
-<!--      <div class="routePic">-->
-<!--        <img [src]="'./assets/' + sectorData?.id + '/' + pic.name + '.jpeg'"-->
-<!--             [attr.srcset]="getImagePath(sectorData?.id, pic.name)"-->
-<!--             alt="Img of {{sectorData?.name}}"-->
-<!--             [class.zoomed]="selectedPictureId === pic.id"-->
-<!--             (click)="toggleZoom(pic.id)">-->
-<!--      </div>-->
-<!--    </div>-->
-
     <div class="wr-routePic" *ngFor="let pic of sectorData?.pictures">
       <div class="routePic">
          <img [src]="getImagePath(sectorData?.id, pic.name)"

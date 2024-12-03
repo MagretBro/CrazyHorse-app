@@ -14,6 +14,9 @@
 
 // массив скальных массивов внутри страны, как CrazyHorse
 
+export interface LoginResponse {
+  token: string;
+}
 
 export interface Region {
   id: string;

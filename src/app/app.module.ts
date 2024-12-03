@@ -11,11 +11,12 @@ import { MainComponent } from './components/main/main.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SectorComponent } from './components/sector/sector.component';
 import { RockrouteComponent } from './components/rockroute/rockroute.component';
+import { LoginComponent } from "./components/login/login.component";
 import {MatMenu, MatMenuModule, MatMenuTrigger} from "@angular/material/menu";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 // import { RoutedescribeComponent } from './components/routedescribe/routedescribe.component';
 import {MatExpansionModule} from "@angular/material/expansion";
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { MassiveComponent} from "./components/massive/massive.component";
 import {NgOptimizedImage} from "@angular/common";
 import {MatListModule} from '@angular/material/list';
@@ -23,6 +24,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {ListmassivesComponent} from "./components/listmassives/listmassives.component";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {AuthInterceptor} from "./auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     RockrouteComponent,
     ListmassivesComponent,
     MassiveComponent,
+    LoginComponent,
 
   ],
     imports: [
@@ -58,7 +61,13 @@ import {MatSidenavModule} from "@angular/material/sidenav";
         MatSidenavModule,
 
     ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
