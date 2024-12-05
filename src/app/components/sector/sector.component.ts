@@ -3,6 +3,7 @@ import { Sector, Picture, ClimbingRoute } from "../../model/model";
 import { SectorService } from "../../service/sector.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { PictureService } from "../../service/picture.service";
+import { AuthService } from "../../service/auth.service";
 
 class ViewClimbingRoute extends ClimbingRoute {
   isOpen: boolean = false;
@@ -30,18 +31,69 @@ export class SectorComponent implements OnInit {
   opened?: boolean;
   shouldRun = /(^|.)(stackblitz|webcontainer).(io|com)$/.test(window.location.host);
 
+
+  ///// Add new Sector method
+  isAuthenticated: boolean = false; // Показывает, авторизован ли пользователь
+
+  // Пример данных для добавления сектора
+  newSector: Sector = {
+    id: '',
+    name: '',
+    numSector: '',
+    describe: '',
+    mapPoint: '',
+    massiveId: '',
+    pictures: [],
+    climbingRoutes: []
+  };
+  showModal: boolean = false; // Управление видимостью модального окна
+  isAdding: boolean = true; // Определяет, что пользователь хочет: добавить или удалить сектор
+  selectedSectorId: string = ''; // Для удаления сектора
+
+
+  ///// Add new Sector method
+
+
+
+
+
   constructor(
     private sectorService: SectorService,
     private pictureService: PictureService,
     private router: Router,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private authService: AuthService // Добавлено AuthService
+
+) {}
 
   async ngOnInit() {
     this.sectorId = this.route.snapshot.paramMap.get('id')!;
     await this.getSectorData();
     this.getRouteCountsForAllSectorsByCategory(); // Вызов метода для получения категорий с бэкенда
+    this.getAllSectors();
+    this.checkAuthStatus();
+
   }
+
+  // Проверка, авторизован ли пользователь
+  checkAuthStatus() {
+    this.isAuthenticated = this.authService.isAuthenticated(); // Метод AuthService для проверки авторизации
+  }
+
+  // Открытие модального окна
+  openModal(isAdding: boolean, sectorId: string = '') {
+    this.isAdding = isAdding;
+    this.selectedSectorId = sectorId;
+    this.showModal = true;
+  }
+
+  // Закрытие модального окна
+  closeModal() {
+    this.showModal = false;
+  }
+
+
+
 
   async getAllSectors() {
     let massiveId = this.sectorData?.massiveId;
@@ -174,5 +226,45 @@ export class SectorComponent implements OnInit {
 
     return imagePath;
   }
+
+
+  ///// Add new Sector method
+
+
+  // Добавление нового сектора
+  async addNewSector() {
+    if (!this.sectorData?.massiveId) {
+      console.error('Отсутствует massiveId для добавления сектора');
+      return;
+    }
+    this.newSector.massiveId = this.sectorData.massiveId;
+
+    this.sectorService.addSector(this.newSector).subscribe(
+      () => {
+        this.getAllSectors(); // Обновить список
+        this.closeModal();
+      },
+      error => console.error('Ошибка при добавлении сектора:', error)
+    );
+  }
+  // Метод для удаления сектора
+
+  deleteSector() {
+    if (!this.selectedSectorId) {
+      console.error('Не выбран сектор для удаления');
+      return;
+    }
+
+    this.sectorService.deleteSector(this.selectedSectorId).subscribe(
+      () => {
+        this.getAllSectors(); // Обновить список
+        this.closeModal();
+      },
+      error => console.error('Ошибка при удалении сектора:', error)
+    );
+  }
+    ///// Add new Sector method
+
+
 }
 

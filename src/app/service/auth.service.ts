@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import { LoginResponse } from "../model/model";
 
@@ -13,8 +13,8 @@ export class AuthService {
 
   constructor(private  http: HttpClient) { }
 
-  login(credentials: { username: string; password: string}) {
-    return this.http.post<LoginResponse>(`${this.baseUrl}/login`, credentials);
+  login(credentials: { username: string; password: string}): Observable<any>  {
+    return this.http.post('http://localhost:5025/api/auth/login', credentials);
   }
 
   register(user: { username: string; password: string}) {

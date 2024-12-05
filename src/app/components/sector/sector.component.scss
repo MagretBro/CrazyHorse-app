@@ -140,176 +140,33 @@ body {
   }
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-
-
-
-
-
-//
-//// Основной стиль для Angular Material и базовая стилизация
-//@import '@angular/material/prebuilt-themes/indigo-pink.css';
-//@import '@angular/material/core/theming/all-theme';
-////@include mat-core();
-//
-//* {
-//  font-family: 'Roboto', sans-serif;
-//  box-sizing: border-box;
-//}
-//
-//// Контейнер для основного содержимого
-//.wr-main {
-//  display: flex;
-//  flex-direction: column;
-//  gap: 2rem;
-//  padding: 2rem;
-//  margin-left: 200px; // Оставляем место для бокового меню
-//  transition: margin 0.3s ease;
-//}
-//
-//// Стили для заголовка сектора
-//.h3 {
-//  font-size: 1.5rem;
-//  font-weight: 700;
-//  color: #333;
-//}
-//
-//  .routePic img {
-//    transition: transform 0.3s ease, width 0.3s ease;
-//    cursor: pointer;
-//    width: 300px;
-//    max-width: 100%;
-//    height: auto;
-//  }
-//
-//  .routePic img.zoomed {
-//    width: 100%;
-//    transform: scale(1);
-//    cursor: zoom-out;
-//  }
-//  @media (max-width: 768px) {
-//    .wr-main {
-//      margin-left: 200px;
-//      padding: 1rem;
-//    }
-//
-//    .routePic img {
-//      max-width: 100%;
-//    }
-//  }
-//
-//// Список категорий сложности трасс
-//.category-list {
-//  display: flex;
-//  flex-wrap: wrap;
-//  gap: 0.5rem;
-//  padding: 0;
-//  list-style: none;
-//
-//  li {
-//    padding: 0.5rem 1rem;
-//    background-color: #f5f5f5;
-//    border-radius: 4px;
-//    font-weight: bold;
-//  }
-//}
-//
-//// Описание сектора и карты
-//.wr-describe, .wr-map {
-//  color: #555;
-//  line-height: 1.6;
-//}
-//
-//// Многострочный текст и карта
-//.mat-accordion {
-//  width: 100%;
-//}
-//
-//// Стиль для row-контейнеров
-//.row {
-//  display: flex;
-//  flex-direction: column;
-//  gap: 1rem;
-//}
-
-
-// 2 version
-//* {
-//  font-family: Roboto, sans-serif;
-//}
-//
-//.category-list {
-//  display: flex;
-//  gap: 1rem;
-//  list-style-type: none;
-//  padding: 0;
-//  margin: 0;
-//
-//  li {
-//    font-weight: bold;
-//    font-size: 1rem;
-//  }
-//}
-//.wr-main {
-//  display: flex;
-//  flex-direction: column;
-//  gap: 1rem; // Отступ между блоками
-//  margin: 5%;
-//
-//  .row {
-//    display: flex;
-//    align-items: flex-start;
-//    gap: 1rem;
-//  }
-//
-//  .h3 {
-//    font-size: 1.5rem; // Увеличиваем размер шрифта
-//    font-weight: bold;
-//    font-family: 'Roboto', sans-serif;
-//    gap: 1rem;
-//    width: 20%;
-//  }
-//
-//  .wr-describe {
-//    font-family: 'Roboto', sans-serif; // Красивый шрифт без засечек
-//    font-size: 1.1rem; // Размер текста для удобного чтения
-//    line-height: 1.6; // Пространство между строками
-//    color: #333; // Темный цвет для улучшенной читаемости
-//  }
-//
-//  .wr-describe,
-//  .wr-map,
-//  mat-accordion {
-//    flex: 1;             // Занимает оставшееся пространство справа
-//  }
-//
-//  }
-//
-//
-//.routePic img {
-//  transition: transform 0.3s ease, width 0.3s ease;
-//  cursor: pointer;
-//  width: 300px;
-//  max-width: 100%;
-//  height: auto;
-//}
-//
-//.routePic img.zoomed {
-//  width: 100%;
-//  transform: scale(1);
-//  cursor: zoom-out;
-//}
-//
-//@media (max-width: 768px) {
-//  .routePic img {
-//    width: 100vw;
-//    height: auto;
-//    transform: none;
-//    cursor: default;
-//  }
-//}
-//
-//
-
-
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}

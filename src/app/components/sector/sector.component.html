@@ -1,44 +1,49 @@
-
 <app-header></app-header>
 <div class="main-container">
 
+  <!-- Список секторов -->
   <div class="sector-list">
     <div class="h4">Список секторов:</div>
-    <div class="sector-item" style="width: 100%;" *ngFor="let sector of listSectors" (click)="onSectorPage(sector.id)">
+    <div
+      class="sector-item"
+      style="width: 100%;"
+      *ngFor="let sector of listSectors"
+      (click)="onSectorPage(sector.id)">
       {{sector.numSector}} - {{sector.name}}
+      <ng-container *ngIf="isAuthenticated">
+        <button (click)="openModal(false, sector.id)" class="delete-btn">
+          <mat-icon>X</mat-icon>
+        </button>
+      </ng-container>
     </div>
+    <ng-container *ngIf="isAuthenticated">
+      <button class="add-btn" (click)="openModal(true)">Добавить сектор</button>
+    </ng-container>
   </div>
 
-
+  <!-- Основная информация о секторе -->
   <div class="wr-main">
-
     <div class="h3">{{sectorData?.name}}</div>
     <div class="wr-routePic" *ngFor="let pic of sectorData?.pictures">
       <div class="routePic">
-         <img [src]="getImagePath(sectorData?.id, pic.name)"
+        <img [src]="getImagePath(sectorData?.id, pic.name)"
              alt="Image of {{sectorData?.name}}"
              [class.zoomed]="selectedPictureId === pic.id"
              (click)="toggleZoom(pic.id)">
       </div>
     </div>
-
-
     <div class="row">
       <div class="h3">Сложность трасс:</div>
       <ul class="category-list">
         <li *ngFor="let category of getNonZeroCategories()">
-          {{ category }}: {{ routeCountsForAllSectorsByCategory[category] || 0}}
+          {{ category }}: {{ routeCountsForAllSectorsByCategory[category] || 0 }}
         </li>
       </ul>
     </div>
-
     <div class="row">
       <div class="h3">Как добраться:</div>
-      <div class="wr-describe">
-        {{ sectorData?.describe }}
-      </div>
+      <div class="wr-describe">{{ sectorData?.describe }}</div>
     </div>
-
     <div class="row">
       <div class="h3">Карта:</div>
       <div class="wr-map">{{ sectorData?.mapPoint }}</div>
@@ -59,6 +64,102 @@
       </mat-accordion>
     </div>
 
+
+  </div>
+
+
+
+
+
+
+  <!-- Модальное окно -->
+  <div *ngIf="showModal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="close-btn" (click)="closeModal()">✖</button>
+      <div *ngIf="isAdding">
+        <h3>Добавить новый сектор</h3>
+        <form (ngSubmit)="addNewSector()">
+          <input type="text" [(ngModel)]="newSector.name" placeholder="Название сектора" name="name" required>
+          <input type="text" [(ngModel)]="newSector.numSector" placeholder="Номер сектора" name="numSector" required>
+          <textarea [(ngModel)]="newSector.describe" placeholder="Описание" name="describe" required></textarea>
+          <input type="text" [(ngModel)]="newSector.mapPoint" placeholder="Координаты на карте" name="mapPoint" required>
+          <button type="submit">Добавить</button>
+        </form>
+      </div>
+      <div *ngIf="!isAdding">
+        <h3>Удалить сектор</h3>
+        <p>Вы уверены, что хотите удалить этот сектор?</p>
+        <button (click)="deleteSector()">Да, удалить</button>
+        <button (click)="closeModal()">Отмена</button>
+      </div>
+    </div>
   </div>
 
 </div>
+
+
+
+
+<!--<app-header></app-header>-->
+<!--<div class="main-container">-->
+
+<!--  <div class="sector-list">-->
+<!--    <div class="h4">Список секторов:</div>-->
+<!--    <div class="sector-item" style="width: 100%;" *ngFor="let sector of listSectors" (click)="onSectorPage(sector.id)">-->
+<!--      {{sector.numSector}} - {{sector.name}}-->
+<!--    </div>-->
+<!--  </div>-->
+
+
+<!--  <div class="wr-main">-->
+
+<!--    <div class="h3">{{sectorData?.name}}</div>-->
+<!--    <div class="wr-routePic" *ngFor="let pic of sectorData?.pictures">-->
+<!--      <div class="routePic">-->
+<!--         <img [src]="getImagePath(sectorData?.id, pic.name)"-->
+<!--             alt="Image of {{sectorData?.name}}"-->
+<!--             [class.zoomed]="selectedPictureId === pic.id"-->
+<!--             (click)="toggleZoom(pic.id)">-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+<!--    <div class="row">-->
+<!--      <div class="h3">Сложность трасс:</div>-->
+<!--      <ul class="category-list">-->
+<!--        <li *ngFor="let category of getNonZeroCategories()">-->
+<!--          {{ category }}: {{ routeCountsForAllSectorsByCategory[category] || 0}}-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+
+<!--    <div class="row">-->
+<!--      <div class="h3">Как добраться:</div>-->
+<!--      <div class="wr-describe">-->
+<!--        {{ sectorData?.describe }}-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="row">-->
+<!--      <div class="h3">Карта:</div>-->
+<!--      <div class="wr-map">{{ sectorData?.mapPoint }}</div>-->
+<!--    </div>-->
+
+<!--    <div class="row">-->
+<!--      <div class="h3">Трассы:</div>-->
+
+<!--      <mat-accordion>-->
+<!--        <mat-expansion-panel *ngFor="let route of sectorData?.climbingRoutes" (toggle)="toggleDescriptionClimbingRoute(route)">-->
+<!--          <mat-expansion-panel-header>-->
+<!--            <mat-panel-title>-->
+<!--              <strong>{{ route.numRouter }}</strong> &nbsp; <strong>{{ route.name }}</strong> &nbsp; ({{ route.category }}, {{route.height}}, {{route.boltCount}})-->
+<!--            </mat-panel-title>-->
+<!--          </mat-expansion-panel-header>-->
+<!--          <p *ngIf="route.boltCount">Описание: {{route.testimonial}}; {{route.describe}} {{ route.bolt }}</p>-->
+<!--        </mat-expansion-panel>-->
+<!--      </mat-accordion>-->
+<!--    </div>-->
+
+<!--  </div>-->
+
+<!--</div>-->
